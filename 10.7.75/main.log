@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.11)  16 SEP 2025 00:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.11)  16 SEP 2025 00:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1680,7 +1680,7 @@ onts/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 59322 bytes).
+Output written on main.pdf (3 pages, 59331 bytes).
 PDF statistics:
  151 PDF objects out of 1000 (max. 8388607)
  112 compressed objects within 2 object streams
