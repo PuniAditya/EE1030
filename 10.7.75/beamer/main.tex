@@ -235,4 +235,65 @@ For $\vec{m_2} \propto \myvec{2rh \\ h^2-r^2}$: $\brak{h^2-r^2}x - \brak{2rh}y =
 So, options \textbf{\brak{1}} and \textbf{\brak{3}} are true.
 \end{frame}
 
+\begin{frame}{Example}
+Let r = 3, h = 2. \\
+For the circle $x^2+y^2-6x-4y+4=0$,
+\begin{align}
+    \vec{A} = \myvec{1 & 0 \\ 0 & 1},\text{ }\vec{u} = \myvec{-3 \\ -2},\text{ }f = 4
+\end{align}
+From \eqref{eq:sigma_notation},
+\begin{align}
+    \vec{\Sigma} = \myvec{-3 \\ -2}\myvec{-3 & -2} - 4\myvec{1 & 0 \\ 0 & 1} = \myvec{5 & 6 \\ 6 & 0}
+\end{align}
+\end{frame}
+
+\begin{frame}{Example}
+The characteristic equation is $\mydet{\vec{\Sigma}-\lambda\vec{I}}=0$. \\
+Let $\lambda^2 + a_1 \lambda + a_2 = 0$. Using Faddeev-Leverrier Method,
+\begin{align}
+    \vec{B_1} &= \vec{A} \\
+    a_1 &= - tr\brak{\vec{B_1}} = -\brak{5}
+\end{align}
+\begin{align}
+    \vec{B_2} &= \vec{A}\brak{\vec{B_1} + a_1\vec{I}} \\
+    \vec{B_2} &= \myvec{36 & 60 \\ 0 & 36} \\
+    a_2 &= -\frac{1}{2}tr\brak{\vec{B_2}} \\
+    a_2 &= -36
+\end{align}
+\end{frame}
+
+\begin{frame}{Example}
+So, $\lambda^2 - 5\lambda - 36 = 0$, giving the eigenvalues $\lambda_1 = 9$ and $\lambda_2 = -4$.
+\begin{align}
+    \vec{P} = \frac{1}{\sqrt{13}}\myvec{3 & 2 \\ 2 & -3}
+\end{align}
+\begin{align}
+    y_1^2 = \frac{-\brak{-4}}{9-\brak{-4}} = \frac{4}{13} \implies y_1 = \pm\frac{2}{\sqrt{13}} \\
+    y_2^2 = \frac{9}{9-\brak{-4}} = \frac{9}{13} \implies y_2 = \pm\frac{3}{\sqrt{13}}
+\end{align}
+\end{frame}
+
+\begin{frame}{Example}
+Using \eqref{eq:equation}, $\vec{m} = y_1\vec{v_1}+y_2\vec{v_2}$.
+\begin{align}
+    \vec{m_1} &\propto 2\vec{v_1} - 3\vec{v_2} \propto 2\myvec{3 \\ 2} - 3\myvec{2 \\ -3} = \myvec{0 \\ 13} \propto \myvec{0 \\ 1} \\
+    \vec{m_2} &\propto 2\vec{v_1} + 3\vec{v_2} \propto 2\myvec{3 \\ 2} + 3\myvec{2 \\ -3} = \myvec{12 \\ -5}
+\end{align}
+\end{frame}
+
+\begin{frame}{Example}
+For $\vec{m_1}$: $\myvec{x \\ y} = k\myvec{0 \\ 1} \implies x = 0$. This is option \textbf{1}. \\
+For $\vec{m_2}$: $\myvec{x \\ y} = k\myvec{12 \\ -5} \implies \brak{-5}x - \brak{12}y = 0$. This is option \textbf{3}. \\
+So, options \textbf{\brak{1}} and \textbf{\brak{3}} are true.
+\end{frame}
+
+\begin{frame}{Plot}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\columnwidth]{../figs/plot_p.jpg}
+	\caption{Example}
+	\label{fig:example}
+\end{figure}
+\end{frame}
+
 \end{document}
