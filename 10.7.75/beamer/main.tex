@@ -1,29 +1,93 @@
-\documentclass[journal]{IEEEtran}
-\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
-\usepackage{gvv-book}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
 \usepackage{gvv}
-\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+  breakable=true,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=default,
+  minted options={%
+    linenos,
+    gobble=0,
+    breaklines=true,
+    breakafter=,,
+    fontsize=\small,
+    numbersep=8pt,
+    #1},
+  boxsep=0pt,
+  left skip=0pt,
+  right skip=0pt,
+  left=25pt,
+  right=0pt,
+  top=3pt,
+  bottom=3pt,
+  arc=5pt,
+  leftrule=0pt,
+  rightrule=0pt,
+  bottomrule=2pt,
+  toprule=2pt,
+  colback=bg,
+  colframe=orange!70,
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+    \end{tcbclipinterior}},
+  #3,
+}
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false,
+}
+\title{10.7.75}
+\date{16th September, 2025}
+\author{Puni Aditya - EE25BTECH11046}
 
 \begin{document}
 
-\title{10.7.75}
-\author{Puni Aditya - EE25BTECH11046}
-\maketitle
-
-\textbf{Question:}
+\frame{\titlepage}
+\begin{frame}{Question}
 Find the equations of tangents drawn from origin to the circle $x^2+y^2-2rx-2hy+h^2=0$,are
-\begin{multicols}{2}
 \begin{enumerate}
     \item $x=0$
     \item $y=0$
     \item $\brak{h^2-r^2}x-2rhy=0$
     \item $\brak{h^2-r^2}x+2rhy=0$
 \end{enumerate}
-\end{multicols}
+\end{frame}
 
-\textbf{Solution:}
-
+\begin{frame}{Theoretical Solution}
 A general conic section is described by the equation
 \begin{align}
     \vec{x}^\top \vec{V} \vec{x} + 2\vec{u}^\top \vec{x} + f = 0
@@ -32,6 +96,9 @@ where $\vec{V}$ is a symmetric matrix. A line passing through a point $\vec{h}$ 
 \begin{align}
     \vec{x} = \vec{h} + k\vec{m}
 \end{align}
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
 Substitute the line equation into the conic to find points of intersection.
 \begin{align}
     k^2\brak{\vec{m}^\top\vec{V}\vec{m}} + 2k\brak{\vec{m}^\top\vec{V}\vec{h} + \vec{u}^\top\vec{m}} + \brak{\vec{h}^\top\vec{V}\vec{h} + 2\vec{u}^\top\vec{h} + f} = 0
@@ -42,7 +109,12 @@ Let $g\brak{\vec{h}} = \vec{h}^\top\vec{V}\vec{h} + 2\vec{u}^\top\vec{h} + f$ be
     \brak{\vec{m}^\top\vec{V}\vec{h} + \vec{u}^\top\vec{m}}^2 - \brak{\vec{m}^\top\vec{V}\vec{m}}\brak{g\brak{\vec{h}}} = 0
 \end{align}
 \begin{align}
-    \brak{\vec{m}^\top \brak{\vec{V}\vec{h} + \vec{u}}}^2 - g\brak{\vec{h}}\brak{\vec{m}^\top\vec{V}\vec{m}} &= 0 \\
+\brak{\vec{m}^\top \brak{\vec{V}\vec{h} + \vec{u}}}^2 - g\brak{\vec{h}}\brak{\vec{m}^\top\vec{V}\vec{m}} = 0
+\end{align}
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+\begin{align}
     \vec{m}^\top \brak{\brak{\vec{V}\vec{h} + \vec{u}}\brak{\vec{V}\vec{h} + \vec{u}}^\top} \vec{m} - \vec{m}^\top \brak{g\brak{\vec{h}}\vec{V}} \vec{m} &= 0 \\
     \vec{m}^\top \sbrak{\brak{\vec{V}\vec{h} + \vec{u}}\brak{\vec{V}\vec{h} + \vec{u}}^\top - \brak{\vec{h}^\top\vec{V}\vec{h} + 2\vec{u}^\top\vec{h} + f}\vec{V}} \vec{m} &= 0
 \end{align}
@@ -53,7 +125,9 @@ Let $g\brak{\vec{h}} = \vec{h}^\top\vec{V}\vec{h} + 2\vec{u}^\top\vec{h} + f$ be
     \vec{m}^\top \vec{\Sigma} \vec{m} = 0 \label{eq:sigma}
 \end{align}
 This is the general equation for the directions of tangents from an arbitrary point $\vec{h}$.
+\end{frame}
 
+\begin{frame}{Theoretical Solution}
 For $\vec{h} = \vec{0}$,
 \begin{align}
     \vec{\Sigma} = \brak{\vec{V}\vec{0} + \vec{u}}\brak{\vec{V}\vec{0} + \vec{u}}^\top - \brak{\vec{0}^\top\vec{V}\vec{0} + 2\vec{u}^\top\vec{0} + f}\vec{V} = \vec{u}\vec{u}^\top - f\vec{V}
@@ -64,7 +138,10 @@ $\vec{D}$ is a diagonal matrix with the eigenvalues of $\vec{\Sigma}$ on its dia
 \begin{align}
     \vec{D} = \myvec{\lambda_1 & 0 \\ 0 & \lambda_2} \label{eq:1}
 \end{align}
-$\vec{P}$ is an orthogonal matrix whose columns are the corresponding orthonormal eigenvectors. So, $\vec{P}^\top \vec{P} = \vec{P}\vec{P}^\top = 1$.
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    $\vec{P}$ is an orthogonal matrix whose columns are the corresponding orthonormal eigenvectors. So, $\vec{P}^\top \vec{P} = \vec{P}\vec{P}^\top = 1$.
 \begin{align}
     \vec{P} = \myvec{\vec{v_1} & \vec{v_2}} \label{eq:2}
 \end{align}
@@ -75,7 +152,10 @@ Substitute \eqref{eq:1} and \eqref{eq:2} in \eqref{eq:sigma}
 \begin{align}
     (\vec{m}^\top \vec{P})\vec{D}(\vec{P}^\top \vec{m}) = 0
 \end{align}
-Let $\vec{y} = \vec{P}^\top \vec{m} = \myvec{y_1 \\ y_2} $.
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    Let $\vec{y} = \vec{P}^\top \vec{m} = \myvec{y_1 \\ y_2} $.
 \begin{align}
     \vec{y}^\top \vec{D} \vec{y} = 0
 \end{align}
@@ -87,11 +167,13 @@ Let $\vec{y} = \vec{P}^\top \vec{m} = \myvec{y_1 \\ y_2} $.
 Since $\vec{P}$ is orthogonal,
 \begin{align}
     \vec{y}^\top\vec{y} &= \vec{m}^\top\vec{P}\vec{P}^\top\vec{m} \\
-    &= \vec{m}^\top\vec{I}\vec{m} \\
     &= \vec{m}^\top\vec{m} \\
     &= 1
 \end{align}
-\begin{align}
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    \begin{align}
     \implies y_1^2 + y_2^2 = 1 \label{eq:e2}
 \end{align}
 From the pair of equations \eqref{eq:e1} and \eqref{eq:e2},
@@ -103,8 +185,10 @@ From the pair of equations \eqref{eq:e1} and \eqref{eq:e2},
     \vec{P}\vec{P}^\top\vec{m} &= \vec{P}\vec{y} \\
     \vec{m} &= \vec{P}\vec{y} \label{eq:equation}
 \end{align}
+\end{frame}
 
-For the circle $x^2+y^2-2rx-2hy+h^2=0$,
+\begin{frame}{Theoretical Solution}
+    For the circle $x^2+y^2-2rx-2hy+h^2=0$,
 \begin{align}
     \vec{A} = \myvec{1 & 0 \\ 0 & 1},\text{ }\vec{u} = \myvec{-r \\ -h},\text{ }f = h^2
 \end{align}
@@ -112,7 +196,10 @@ From \eqref{eq:sigma_notation},
 \begin{align}
     \vec{\Sigma} = \myvec{-r \\ -h}\myvec{-r & -h} - h^2\myvec{1 & 0 \\ 0 & 1} = \myvec{r^2-h^2 & rh \\ rh & 0}
 \end{align}
-The characteristic equation is $\mydet{\vec{\Sigma}-\lambda\vec{I}}=0$. \\
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    The characteristic equation is $\mydet{\vec{\Sigma}-\lambda\vec{I}}=0$. \\
 Let $\lambda^2 + a_1 \lambda + a_2 = 0$. Using Faddeev-Leverrier Method,
 \begin{align}
     \vec{B_1} &= \vec{A} \\
@@ -124,7 +211,10 @@ Let $\lambda^2 + a_1 \lambda + a_2 = 0$. Using Faddeev-Leverrier Method,
     a_2 &= -\frac{1}{2}tr\brak{\vec{B_2}} \\
     a_2 &= -r^2h^2
 \end{align}
-So, $\lambda^2 - \brak{r^2-h^2}\lambda - r^2h^2 = 0$, giving the eigenvalues $\lambda_1 = r^2$ and $\lambda_2 = -h^2$.
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    So, $\lambda^2 - \brak{r^2-h^2}\lambda - r^2h^2 = 0$, giving the eigenvalues $\lambda_1 = r^2$ and $\lambda_2 = -h^2$.
 \begin{align}
     \vec{P} = \frac{1}{\sqrt{r^2+h^2}}\myvec{r & h \\ h & -r}
 \end{align}
@@ -132,13 +222,17 @@ So, $\lambda^2 - \brak{r^2-h^2}\lambda - r^2h^2 = 0$, giving the eigenvalues $\l
     y_1^2 = \frac{-\brak{-h^2}}{r^2-\brak{-h^2}} = \frac{h^2}{r^2+h^2} \implies y_1 = \pm\frac{h}{\sqrt{r^2+h^2}} \\
     y_2^2 = \frac{r^2}{r^2-\brak{-h^2}} = \frac{r^2}{r^2+h^2} \implies y_2 = \pm\frac{r}{\sqrt{r^2+h^2}}
 \end{align}
-Using \eqref{eq:equation}, $\vec{m} = y_1\vec{v_1}+y_2\vec{v_2}$.
+\end{frame}
+
+\begin{frame}{Theoretical Solution}
+    Using \eqref{eq:equation}, $\vec{m} = y_1\vec{v_1}+y_2\vec{v_2}$.
 \begin{align}
     \vec{m_1} &\propto h\vec{v_1} - r\vec{v_2} \propto h\myvec{r \\ h} - r\myvec{h \\ -r} = \myvec{0 \\ h^2+r^2} \propto \myvec{0 \\ 1} \\
     \vec{m_2} &\propto h\vec{v_1} + r\vec{v_2} \propto h\myvec{r \\ h} + r\myvec{h \\ -r} = \myvec{2rh \\ h^2-r^2}
 \end{align}
-For $\vec{m_1} \propto \myvec{0 \\ 1}$: $1 \times x - 0 \times y = 0 \implies x = 0$. This is option \textbf{1}. \\
-For $\vec{m_2} \propto \myvec{2rh \\ h^2-r^2}$: $\brak{h^2-r^2}x - \brak{2rh}y = 0$. This is option \textbf{3}. \\
+For $\vec{m_1} \propto \myvec{0 \\ 1}$: $1 \times x - 0 \times y = 0 \implies x = 0$. \\
+For $\vec{m_2} \propto \myvec{2rh \\ h^2-r^2}$: $\brak{h^2-r^2}x - \brak{2rh}y = 0$. \\
 So, options \textbf{\brak{1}} and \textbf{\brak{3}} are true.
+\end{frame}
 
 \end{document}
