@@ -5,6 +5,14 @@ import ctypes
 import os
 import sys
 
+eigen_vals = ctypes.CDLL('./eigen_vals.so')
+
+eigen_vals.eigenvalues.argtypes = [
+	ctypes.POINTER(ctypes.c_double),
+	ctypes.POINTER(ctypes.c_double)
+]
+eigen_vals.eigenvalues.restype = None
+
 def circ_gen(O,r):
 	len = 50
 	theta = np.linspace(0,2*np.pi,len)
@@ -56,6 +64,18 @@ f = 4
 
 h = np.array([0, 0]).reshape(-1, 1)
 
+gh = h.T@V@h+2*u.T@h+f 
+sigmat = (V@h+u)@(V@h+u).T-gh*V
+    
+sigmat_np = np.array(sigmat, dtype=np.float64).flatten()
+eigenvalues = np.zeros(2, dtype=np.float64)
+eigen_vals.eigenvalues(
+    sigmat_np.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+    eigenvalues.ctypes.data_as(ctypes.POINTER(ctypes.c_double))
+)
+D = eigenvalues
+
+
 center, radius = circ_param(u, f)
 
 circle_points = circ_gen(center.reshape(-1, 1), radius)
@@ -89,5 +109,5 @@ plt.grid()
 plt.gca().set_aspect('equal', adjustable='box')
 plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left')
 
-plt.savefig("../figs/plot_p.jpg", bbox_inches='tight')
+plt.savefig("../figs/plot_c.jpg", bbox_inches='tight')
 plt.show()
