@@ -120,7 +120,6 @@ where the Gram matrix is $\vec{G} = \vec{A}^\top\vec{A}$. From \eqref{eq:eigen},
     &= k_1\brak{k_1\vec{x}} \\
     &= k_1^2\vec{x}
 \end{align}
-\textbf{Here, the approach is wrong because it is inherently assumed that }$\vec{A}$\textbf{ and }$\vec{A}^\top$\textbf{ have the same eigenvector, which is only true in the case of symmetric matrices. Here, A need not be symmetric.}\\
 \end{frame}
 
 \begin{frame}{Theoretical Solution}
@@ -164,11 +163,13 @@ Let altitude of the triangle be $h_T$
 \begin{align}
     h_T &= \frac{d_{P_1P_2}}{\sin\theta},\text{ where }\theta\text{ is the angle between the plane normals.} \\
     d_{P_1P_2} &= \frac{\abs{18-14}}{\norm{\vec{n}}} = \frac{4}{\sqrt{22}} \\
-    \sin\theta &= \sqrt{1 - \left(\frac{\vec{n}^\top\vec{n_1}}{\norm{\vec{n}}\norm{\vec{n_1}}}\right)^2} = \sqrt{1 - \left(\frac{8}{\sqrt{22}\sqrt{3}}\right)^2} = \frac{1}{\sqrt{33}}
 \end{align}
 \end{frame}
 
 \begin{frame}{Theoretical Solution}
+\begin{align}
+    \sin\theta &= \sqrt{1 - \left(\frac{\vec{n}^\top\vec{n_1}}{\norm{\vec{n}}\norm{\vec{n_1}}}\right)^2} = \sqrt{1 - \left(\frac{8}{\sqrt{22}\sqrt{3}}\right)^2} = \frac{1}{\sqrt{33}}
+\end{align}
 \begin{align}
     h_T &= \frac{4/\sqrt{22}}{1/\sqrt{33}} = 4\sqrt{\frac{3}{2}} \\
     L^2 &= \left(\frac{2}{\sqrt{3}}h_T\right)^2 = \frac{4}{3}\left(16 \times \frac{3}{2}\right) = 32 \\

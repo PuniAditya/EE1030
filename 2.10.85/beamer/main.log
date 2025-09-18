@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.11)  17 SEP 2025 23:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.11)  18 SEP 2025 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1778,7 +1778,7 @@ LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <6> not available
 ] [7
 
 ]
-Overfull \vbox (42.77148pt too high) detected at line 169
+Overfull \vbox (19.97115pt too high) detected at line 167
  []
 
 [8
@@ -1789,7 +1789,7 @@ Overfull \vbox (42.77148pt too high) detected at line 169
 <../figs/plot_p.jpg, id=283, 867.24pt x 722.7pt>
 File: ../figs/plot_p.jpg Graphic file (type jpg)
 <use ../figs/plot_p.jpg>
-Package pdftex.def Info: ../figs/plot_p.jpg  used on input line 189.
+Package pdftex.def Info: ../figs/plot_p.jpg  used on input line 190.
 (pdftex.def)             Requested size: 171.14764pt x 142.61865pt.
  [10
 
@@ -1810,7 +1810,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  55742 strings out of 476091
  1334100 string characters out of 5794081
- 2119514 words of memory out of 5000000
+ 2117514 words of memory out of 5000000
  75134 multiletter control sequences out of 15000+600000
  553027 words of font info for 71 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1825,7 +1825,7 @@ fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss
 o10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso8.pfb></usr/share/texmf/fo
 nts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
-Output written on main.pdf (10 pages, 253448 bytes).
+Output written on main.pdf (10 pages, 250542 bytes).
 PDF statistics:
  369 PDF objects out of 1000 (max. 8388607)
  317 compressed objects within 4 object streams
