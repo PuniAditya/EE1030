@@ -1,0 +1,84 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{hyperref}
+
+\title{Rotation Matrix}
+\author{Puni Aditya - EE25BTECH11046}
+
+\begin{document}
+
+\maketitle
+
+A rotation is a linear transformation that preserves the length of a vector $\vec{v}$.
+\begin{align}
+    \norm{\vec{R}\vec{v}} = \vec{v} \label{eq:18}
+\end{align}
+Let the rotation matrix be $\vec{R}$ with order $n$ and there be two vector $\vec{u}$ and $\vec{v}$ in the 3D space. \\
+The inner product of the two vectors must remain same.
+\begin{align}
+    \norm{\vec{u}+\vec{v}}^2 &= \brak{\vec{u}+\vec{v}}^\top\brak{\vec{u}+\vec{v}} \\
+    \norm{\vec{u}+\vec{v}}^2 &= \vec{u}^\top\vec{u}+\vec{v}^\top\vec{v} + 2\vec{u}^\top\vec{v} \\
+    \vec{u}^\top\vec{v} &= \frac{1}{2}\brak{\norm{\vec{u}+\vec{v}}^2 - \norm{\vec{u}}^2 - \norm{\vec{v}}^2} \label{eq:25}
+\end{align}
+\begin{align}
+    \text{Let }\vec{u_1} = \vec{R}\vec{u}\text{ and }\vec{v_1} = \vec{R}\vec{v}
+\end{align}
+Using \eqref{eq:18} and \eqref{eq:25}, 
+\begin{align}
+    \vec{u_1}^\top\vec{v_1} &= \frac{1}{2}\brak{\norm{\vec{u_1}+\vec{v_1}}^2 - \norm{\vec{u_1}}^2 - \norm{\vec{v_1}}^2} \\
+    &= \frac{1}{2}\brak{\norm{\vec{R}\brak{\vec{u}+\vec{v}}}^2 - \norm{\vec{R}\vec{u}}^2 - \norm{\vec{R}\vec{v}}^2} \\
+    &= \frac{1}{2}\brak{\norm{\brak{\vec{u}+\vec{v}}}^2 - \norm{\vec{u}}^2 - \norm{\vec{v}}^2} \\
+    &= \vec{u}^\top\vec{v}
+\end{align}
+\begin{align} 
+    \implies \brak{\vec{R}\vec{u}}^\top \brak{\vec{R}\vec{v}} = \vec{u}^\top \vec{v}
+\end{align}
+\begin{align}
+    \vec{u}^\top\vec{R}^\top\vec{R}\vec{v} &= \vec{u}^\top \vec{v} \\
+    \vec{u}\vec{R}^\top\vec{R}\vec{v} &= \vec{u}^\top\vec{I}\vec{v} \\
+    \vec{u}^\top\brak{\vec{R}^\top\vec{R}-\vec{I}}\vec{v} &= 0 \label{eq:43}
+\end{align}
+Let
+\begin{align*}
+    \vec{R}^\top\vec{R}-\vec{I} = \vec{A}
+\end{align*}
+The \eqref{eq:43} becomes
+\begin{align}
+    \vec{u}^\top\vec{A}\vec{v} &= 0 \label{eq:51}
+\end{align}
+\eqref{eq:51} is true for all $\vec{u}$, $\vec{v}$.
+Let
+\begin{align}
+    \vec{u} = \vec{e_i}\text{ and }\vec{v} = \vec{e_j}\text{, where 0$\leq$i,j$\leq$n} \label{eq:56}
+\end{align}
+Substituting \eqref{eq:56} in \eqref{eq:51},
+\begin{align}
+    \vec{e_i}^\top\vec{A}\vec{e_j} &= 0
+\end{align}
+\begin{align}
+    \implies \vec{A_{ij}} &= 0\text{ where $\vec{A_{ij}}$ is an element in $i-th$ row and $j-th$ column of $\vec{A}$} \label{eq:63}
+\end{align}
+From \eqref{eq:63}, every element 
+\begin{align}
+    \vec{A_{ij}} = 0
+\end{align}
+\begin{align}
+    \implies \vec{A} &= \vec{O} \\
+    \vec{R}^\top\vec{R} - \vec{I} &= \vec{O} \\
+    \implies \vec{R}^\top\vec{R} &= \vec{I} \label{eq:72}
+\end{align}
+
+\begin{align}
+    det\brak{\vec{R}^\top\vec{R}} &= det\brak{\vec{I}} \\
+    det\brak{\vec{R}^\top}det\brak{R} &= det\brak{\vec{I}} \\
+    det\brak{\vec{R}}^2 &= det\brak{vec{I}} \\
+    det\brak{\vec{R}}^2 &= 1 \\
+    det\brak{R} &= 1 \label{eq:80}
+\end{align}
+From \eqref{eq:72} and \eqref{eq:80}, it can be concluded that the rotation matrix $\vec{R}$ is orthogonal and its determinant is 1.
+
+\end{document}
