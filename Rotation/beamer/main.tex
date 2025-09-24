@@ -70,7 +70,8 @@
     breaklines=true,
     showstringspaces=false,
 }
-\title{10.7.75}
+\title{Rotation Matrix}
+
 \date{22nd September, 2025}
 \author{Puni Aditya - EE25BTECH11046}
 
@@ -156,17 +157,8 @@ From \eqref{eq:63}, every element
     \vec{R}^\top\vec{R} - \vec{I} &= \vec{O} \\
     \implies \vec{R}^\top\vec{R} &= \vec{I} \label{eq:72}
 \end{align}
-\end{frame}
 
-\begin{frame}{Proof}
-\begin{align}
-    det\brak{\vec{R}^\top\vec{R}} &= det\brak{\vec{I}} \\
-    det\brak{\vec{R}^\top}det\brak{R} &= det\brak{\vec{I}} \\
-    det\brak{\vec{R}}^2 &= det\brak{vec{I}} \\
-    det\brak{\vec{R}}^2 &= 1 \\
-    det\brak{R} &= 1 \label{eq:80}
-\end{align}
-From \eqref{eq:72} and \eqref{eq:80}, it can be concluded that the rotation matrix $\vec{R}$ is orthogonal and its determinant is 1.
+From \eqref{eq:72}, it can be concluded that the rotation matrix $\vec{R}$ is orthogonal and its determinant is 1.
 \end{frame}
 
 \end{document}
