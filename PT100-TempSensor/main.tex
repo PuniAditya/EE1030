@@ -1,17 +1,16 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 
-% --- PACKAGES ---
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-\usepackage{makecell} % For multi-line table cells
-\usepackage{listings} % For code blocks
-\usepackage{hyperref} % To link to external files or URLs
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{xurl}
+\usepackage{hyperref}
 
-% --- CODE LISTING STYLE (optional, but good practice) ---
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -75,21 +74,21 @@ The components used to construct the temperature measurement system are listed i
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.7\columnwidth]{arduino_uno.jpg} % Replace with your image file name
+    \includegraphics[width=0.7\columnwidth]{figs/arduino_uno.jpg}
     \caption{Arduino Uno Microcontroller Board.}
     \label{fig:arduino}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\columnwidth]{jhd162a_lcd.png} % Replace with your image file name
+    \includegraphics[width=0.8\columnwidth]{figs/jhd162a_lcd.jpg}
     \caption{JHD 162A 16x2 LCD.}
     \label{fig:lcd}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\columnwidth]{ads1115_module.jpg} % Replace with your image file name
+    \includegraphics[width=0.5\columnwidth]{figs/ads1115_module.png}
     \caption{ADS1115 16-bit ADC Module.}
     \label{fig:ads1115}
 \end{figure}
@@ -119,7 +118,7 @@ The assembly involves connecting the voltage divider circuit to the ADC, which t
 \end{table}
 
 \section{Software Implementation}
-The system's logic is implemented using the Arduino IDE. The code is responsible for initializing the ADS1115 ADC and the LCD, reading the voltage from the voltage divider circuit, applying a mathematical conversion to calculate the temperature, and displaying the result. A moving average filter with a window of 10 samples is used to smooth the output and reduce noise. The complete source code can be found in the project's repository, which is hyperlinked here: \fbox{\hypersetup{urlcolor=blue}\url{https://code.cpp}}.
+The system's logic is implemented using the Arduino IDE. The code is responsible for initializing the ADS1115 ADC and the LCD, reading the voltage from the voltage divider circuit, applying a mathematical conversion to calculate the temperature, and displaying the result. A moving average filter with a window of 10 samples is used to smooth the output and reduce noise. The complete source code can be found in the project's repository, which is hyperlinked here: {\hypersetup{colorlinks=false, urlbordercolor={0 0 1}}\url{https://github.com/PuniAditya/EE1030/blob/main/PT100-TempSensor/codes/code.cpp}}.
 
 
 \section{Mathematical Training}
