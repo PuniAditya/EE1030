@@ -1,0 +1,168 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{xurl}
+\usepackage{hyperref}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+
+\title{High-Precision Temperature Measurement System using PT100 and ADS1115}
+
+\author{
+    \IEEEauthorblockN{Puni Aditya, Vivek K Kumar and Dr. G.V.V. Sharma}
+    \IEEEauthorblockA{Department of Electrical Engineering,
+    \\Indian Institute of Technology Hyderabad,\\
+    Kandi, India 502284
+    \\ gadepall@ee.iith.ac.in}
+}
+
+\begin{document}
+
+\iffalse
+\AddToShipoutPictureBG*{
+  \AtPageUpperLeft{
+    \hspace{1.5 cm} 
+    \raisebox{-4.7 cm}[0pt][0pt]{
+      \includegraphics[width=3.5 cm]{figs/IITH.png}
+    }
+  }
+}
+\fi
+
+\maketitle
+
+\begin{abstract}
+This paper details the design and implementation of a temperature measurement system utilizing a PT100 resistance temperature detector (RTD) with a high-precision ADS1115 analog-to-digital converter (ADC) and an Arduino microcontroller. The system employs a voltage divider circuit for signal conditioning. To ensure accuracy, two mathematical training models—a quadratic Least Squares regression and a Random Forest Regressor—are developed and compared for converting the measured voltage into a precise temperature reading. The final output is displayed on a JHD 162A parallel LCD, creating a standalone and accurate measurement device.
+\end{abstract}
+
+\section{Introduction}
+Accurate temperature measurement is critical in various scientific and industrial applications. While many sensors exist, platinum resistance thermometers like the PT100 offer high accuracy and stability over a wide temperature range. However, their small resistance change necessitates precise measurement techniques. This project moves beyond the Arduino's internal ADC by interfacing with an external 16-bit ADS1115 ADC to achieve higher resolution. This paper presents the hardware setup, the software implementation, and a comparative analysis of mathematical models used to calibrate the system for optimal accuracy.
+
+\section{Hardware Setup}
+The components used to construct the temperature measurement system are listed in Table \ref{table:list}. The core components are the Arduino Uno (Fig. \ref{fig:arduino}), JHD 162A LCD (Fig. \ref{fig:lcd}), and the ADS1115 ADC module (Fig. \ref{fig:ads1115}).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\columnwidth]{figs/arduino_uno.jpg}
+    \caption{Arduino Uno Microcontroller Board.}
+    \label{fig:arduino}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figs/jhd162a_lcd.jpg}
+    \caption{JHD 162A 16x2 LCD.}
+    \label{fig:lcd}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{figs/ads1115_module.png}
+    \caption{ADS1115 16-bit ADC Module.}
+    \label{fig:ads1115}
+\end{figure}
+
+
+\begin{table}[!h]
+  \centering
+  \caption{List of Components}
+  \label{table:list}
+  \input{tables/list_table.tex}
+\end{table}
+
+The assembly involves connecting the voltage divider circuit to the ADC, which then communicates with the Arduino. The parallel LCD is also connected to the Arduino for displaying the final temperature. The key connections are detailed in Table \ref{table:ads_connections} and Table \ref{table:lcd_connections}.
+
+\begin{table}[h!]
+  \centering
+  \caption{ADS1115 and Arduino Connections}
+  \label{table:ads_connections}
+  \input{tables/ads1115_connections.tex}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \caption{JHD 162A LCD and Arduino Connections}
+  \label{table:lcd_connections}
+  \input{tables/lcd_connections.tex}
+\end{table}
+
+\section{Software Implementation}
+The system's logic is implemented using the Arduino IDE. The code is responsible for initializing the ADS1115 ADC and the LCD, reading the voltage from the voltage divider circuit, applying a mathematical conversion to calculate the temperature, and displaying the result. A moving average filter with a window of 10 samples is used to smooth the output and reduce noise. The complete source code can be found in the project's repository, which is hyperlinked here: \\ {\hypersetup{colorlinks=false, urlbordercolor={0 0 1}}\url{https://github.com/PuniAditya/EE1030/blob/main/PT100-TempSensor/codes/code.cpp}}.
+
+
+\section{Mathematical Training}
+To convert the measured voltage ($V$) into an accurate temperature ($T$), a model must be trained on empirical data. A set of 15 measurements were recorded, as shown in Table \ref{table:training_data}.
+
+\begin{table}[!h]
+  \centering
+  \caption{Training Data: Temperature vs. Voltage}
+  \label{table:training_data}
+  \input{tables/training_data.tex}
+\end{table}
+
+\subsection{Least Squares Method}
+A quadratic relationship between temperature and voltage is assumed, following the model $V = 1 + AT + BT^2$. To solve for coefficients A and B, we can rearrange this into a linear system: $V - 1 = AT + BT^2$. The Least Squares method was applied to this system to find the optimal coefficients. The resulting equation is:
+\\
+\\
+$V = 1 + (1.55 \times 10^{-2})T - (1.12 \times 10^{-4})T^2$
+\\
+\\
+The predictions from this model are shown in Table \ref{table:ls_results}.
+
+\begin{table}[!h]
+  \centering
+  \caption{Least Squares (Quadratic) Model Predictions}
+  \label{table:ls_results}
+  \input{tables/least_squares_results.tex}
+\end{table}
+
+\subsection{Random Forest Method}
+For a more complex, non-linear relationship, a Random Forest Regressor model was trained on the same dataset. This machine learning model uses an ensemble of decision trees to capture intricate patterns in the data, typically yielding higher accuracy than polynomial models. The predictions from the trained Random Forest model are shown in Table \ref{table:rf_results}.
+
+\begin{table}[!h]
+  \centering
+  \caption{Random Forest Model Predictions}
+  \label{table:rf_results}
+  \input{tables/random_forest_results.tex}
+\end{table}
+
+As seen from the tables, the Random Forest model provides predictions that are closer to the true temperature values, demonstrating its superiority for this application.
+
+\section{Conclusion}
+This project successfully demonstrates the construction of a high-precision temperature sensor using a PT100, ADS1115, and Arduino. The comparison of calibration models clearly shows that while a quadratic Least Squares model provides a good fit, a machine learning approach like Random Forest offers significantly improved accuracy by modeling the system's non-linearities. This validates the use of advanced modeling techniques even for seemingly simple sensor applications.
+
+%\bibliographystyle{IEEEtran}
+%\bibliography{your_references_file} % Create a .bib file for references if needed
+
+\end{document}
